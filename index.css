@@ -1,0 +1,116 @@
+@import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;500;600&display=swap');
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: "Hind Siliguri";
+    font-weight: 500;
+}
+
+h1 {
+    text-align: center;
+    padding: 20px;
+    border-bottom: 2px solid #ddd;
+    font-family: "Hind Siliguri";
+    font-weight: 600;
+}
+
+#body {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#main-content {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr); /* For larger screens */
+    gap: 15px;
+    padding: 15px;
+    margin: 0 50px;
+    justify-content: center;
+    align-items: center;
+    width: 80%;
+}
+
+/* Book design */
+.book {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    cursor: pointer;
+    transition: transform 0.2s;
+    background-color: #fff;
+    margin: 10px;
+    width: 100%;
+}
+
+.book:hover {
+    transform: translateY(-5px);
+}
+
+.book img {
+    width: 100%;
+    height: auto;
+    display: none;
+}
+
+.book p {
+    font-size: 16px;
+    color: #000000;
+    margin: 10px;
+    text-align: center;
+}
+
+.book a {
+    display: block;
+    text-align: center;
+    border-top: 2px solid #ddd;
+    background-color: rgb(91, 235, 139);
+    padding: 5px;
+    text-decoration: none;
+    color: #000;
+}
+
+.book a:hover,
+.book a:focus {
+    text-decoration: underline;
+}
+
+/* Media queries for responsiveness */
+@media (max-width: 1200px) {
+    #main-content {
+        grid-template-columns: repeat(4, 1fr); /* 4 columns on medium screens */
+    }
+}
+
+@media (max-width: 992px) {
+    #main-content {
+        grid-template-columns: repeat(3, 1fr); /* 3 columns on smaller screens */
+        margin: 0 30px;
+    }
+}
+
+@media (max-width: 768px) {
+    #main-content {
+        grid-template-columns: repeat(2, 1fr); /* 2 columns on tablets */
+        margin: 0 20px;
+    }
+
+    .book {
+        margin: 10px 0; /* Adjust margin for smaller devices */
+    }
+}
+
+@media (max-width: 576px) {
+    #main-content {
+        grid-template-columns: 1fr; /* 1 column on mobile devices */
+        margin: 0 10px;
+    }
+
+    .book {
+        width: 100%; /* Full width for mobile */
+    }
+}
+

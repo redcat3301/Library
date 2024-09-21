@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Library</title>
+    <link rel="stylesheet" href="index.css">
+</head>
+<body>
+    <h1>পাঠাগার</h1>
+    <div id="body">
+        <section id="main-content">
+            <!-- Dynamic content will be inserted here -->
+        </section>
+    </div>
+
+    <script>
+        const sheetID = "1j7NLt2sWzUORVNdzx-GgYbcAifsLiYkJCdIcYLkInq8";  // Google Sheet ID
+        const API_KEY = "AIzaSyBWkvsUZPm-t1KM8xWgrVyhwK09pS6jPpc";  // Replace with your API Key
+
+        const sheetURL = `https://sheets.googleapis.com/v4/spreadsheets/${sheetID}/values/Sheet1?key=${API_KEY}`;
+
+        // Fetch data from Google Sheets
+        fetch(sheetURL)
+            .then(response => response.json())
+            .then(data => {
+                const rows = data.values;
+                const mainContent = document.querySelector("#main-content");
+
+                // Skip the first row (headers) and iterate over the data
+                rows.slice(1).forEach((row) => {
+                    const title = row[0]; // PDF Title (A:A)
+                    const imgSrc = row[1]; // Image link (B:B)
+                    const href = row[2];   // Button link (C:C)
+                    const userName = row[3]; // User Name (D:D)
+
+                    // Create the book element
+                    const book = document.createElement("div");
+                    book.classList.add("book");
+
+                    book.innerHTML = `
+                        <img src="${imgSrc}" alt="Book cover">
+                        <p class="PDF-title" style="font-size: 21px; font-family: "Hind Siliguri";">${title}</p>
+                        <p class="info"><span class="label">Added By :</span> <span>${userName}</span></p>
+                        <a class="btn" href="${href}" target="_blank">Read Now</a>
+                    `;
+
+                    mainContent.appendChild(book);
+                });
+            })
+            .catch(error => console.error('Error fetching data:', error));
+    </script>
+</body>
+</html>
